@@ -15,3 +15,4 @@ Please note that no shortcuts work when you are typing. To use a shortcut, click
 * MathQuill
 * Mousetrap
 * Bootstrap
+* Electron
