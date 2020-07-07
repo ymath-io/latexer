@@ -171,7 +171,11 @@ box-shadow: 0 0rem 3rem rgba(0, 0, 0, 0.175) ;
   border-radius: 0.25rem;
 }
 
-.answerb{
+.answerb.or{border-radius:0.25rem !important;
+  border: 0px solid !important;
+  outline:none !important;
+  height:initial}
+.answerb:not(.or){
 border-color:var(--light) !important;
 background-color:var(--light) !important;
 border-radius:0.25rem !important;
@@ -223,4 +227,22 @@ html {
   scroll-snap-align: start;
 
 }
-
+.close:hover{
+  color: var(--danger);
+  
+}
+.close{float:none}
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+  -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+  outline: none !important;
+}
+*:focus {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+  -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+  outline: none !important;
+  outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
