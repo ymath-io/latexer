@@ -175,7 +175,7 @@ if (obj.type =="break"){
 e = document.createElement("BR");
 //final+=e.outerHTML;
 final += "</p><p>";
-lat += "~\\~\\"
+lat += "~\\\\"
 }
 }
 final += "</p>"
