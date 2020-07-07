@@ -29,6 +29,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
+<link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
   <script>window.$ = window.jQuery = require('jquery');</script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -64,14 +68,14 @@ var MathJax = {
             background: var(--secondary);
         }
 </style>
-<div class="sticky-top pt-4 bg-secondary text-light">
+<div class="sticky-top pt-4 blue-gradient text-light">
 <h1 class="px-5">$$\LaTeX \text{-er}$$</h1>
 <div class="btn-group  d-flex" role="group">
-  <button type="button" id="eq" class="btn btn-secondary py-2" onclick="addEquation();">Math</button>
-              <button type="button" id="deq" class="btn btn-secondary py-2" onclick="addDisplayEquation();">Display Math</button>
-  <button type="button" id="txt" class="btn btn-secondary py-2" onclick="addText();">Text</button>
-              <button type="button" id="itm" class="btn btn-secondary py-2" onclick="addItem();">Item</button>
-  <button type="button" id="lb" class="btn btn-secondary py-2" onclick="addBreak();">Line break</button>
+  <button type="button" id="eq" class="btn rgba-indigo-strong py-2" onclick="addEquation();">Math</button>
+              <button type="button" id="deq" class="btn darken-3 cyan py-2" onclick="addDisplayEquation();">Display Math</button>
+  <button type="button" id="txt" class="btn rgba-green-strong py-2" onclick="addText();">Text</button>
+              <button type="button" id="itm" class="btn blue-grey py-2" onclick="addItem();">Item</button>
+  <button type="button" id="lb" class="btn rgba-lime-strong py-2" onclick="addBreak();">Line break</button>
 </div></div>
 <div class="container" id="" style="margin-top:30px">
 
@@ -80,7 +84,7 @@ var MathJax = {
           
           
 
-        <div id="root text-dark" class="py-5">
+        <div id="root" class="py-5">
             <p id="e0"></p>
       </div>
 
@@ -98,8 +102,8 @@ var MathJax = {
 
 </div>
 <div class="btn-group d-flex pt-5" role="group">
-  <a type="button" id="eq" class="btn btn-outline-secondary py-2" onclick="document.getElementById('code').style.display=null;document.getElementById('preview').style.display='none';this.className='btn btn-outline-primary py-2 disabled';this.nextElementSibling.className='btn btn-outline-secondary py-2 ';">Code</a>
-    <a type="button" id="eq" class="btn btn-outline-primary py-2" onclick="document.getElementById('preview').style.display=null;this.className='btn btn-outline-primary py-2 disabled';this.previousElementSibling.className='btn btn-outline-secondary py-2 ';document.getElementById('code').style.display='none';">Preview</a>
+  <a type="button" id="eq" class="btn btn-outline-primary py-2" onclick="document.getElementById('code').style.display=null;document.getElementById('preview').style.display='none';this.className='btn btn-primary py-2 disabled';this.nextElementSibling.className='btn btn-outline-primary py-2 ';">Code</a>
+    <a type="button" id="eq" class="btn btn-primary disabled py-2" onclick="document.getElementById('preview').style.display=null;this.className='btn btn-primary py-2 disabled';this.previousElementSibling.className='btn btn-outline-primary py-2 ';document.getElementById('code').style.display='none';">Preview</a>
 
   </div>
   <div id="preview">
@@ -111,6 +115,10 @@ var MathJax = {
     <pre id="code" style="display:none"><code class="row language-latex" id="out2"></code></pre>
 </div>
 <script src="prism.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
 </body>
 <script src="make.js"></script>
 <script>

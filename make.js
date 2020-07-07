@@ -32,10 +32,11 @@ function decodeHtml(html) {
 }
 function addEquation(){
     n = document.createElement("SPAN");
-    if(!!document.getElementById(lastFocused.id)){
+    /*if(!!document.getElementById(lastFocused.id)){
     $(n).insertAfter("#"+lastFocused.id);}
-    else{$(n).insertAfter("#"+(lastFocused.id-1));}
-    n.outerHTML = `<span id='e${info.length}' class='form-control-sm answerb bg-white pt-2 ' onclick='lastFocused=this;'></span>`;
+    else{$(n).insertAfter("#"+(lastFocused.id-1));}*/
+    root.appendChild(n);
+    n.outerHTML = `<div class="rgba-indigo-strong form-control-sm answerb or" style="display: inline-block"><span id='e${info.length}' class='text-light' style="border:none !important;" onclick='lastFocused=this.parentElement;'>&nbsp;&nbsp;</span><button  class="badge btn close" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button></div>`;
 
     var answerMathField = MQ.MathField(document.querySelector("#e"+info.length), {
     handlers: {}});document.getElementById("e"+info.length).click();
@@ -55,16 +56,13 @@ answerMathField.focus();
 };
 
 function addDisplayEquation(){
-    holder = document.createElement("DIV");
-    holder.className = "text-center";
-    holder.id = "h"+info.length;
-    n = document.createElement("SPAN");
-    holder.appendChild(n);
-    if(!!document.getElementById(lastFocused.id)){
+    n = document.createElement("DIV");
+    root.appendChild(n);
+    /*if(!!document.getElementById(lastFocused.id)){
     $(holder).insertAfter("#"+lastFocused.id);}
-    else{$(holder).insertAfter("#"+(lastFocused.id-1));}
-    n.outerHTML = `<span id="e${info.length}" class="form-control-sm answerb bg-white pt-2 " onclick="lastFocused = document.querySelector('#e${info.length}').parentElement;"></span>`;
-    document.getElementById("e"+info.length).click();
+    else{$(holder).insertAfter("#"+(lastFocused.id-1));}*/
+    n.outerHTML = `<div class="form-control-sm answerb darken-3 cyan or mt-0 text-center" onclick="info[${info.length}].mathfield.focus()" ><span id="e${info.length}" style="border:none !important;" class="answerb form-control-sm text-light  or" onclick="lastFocused = this.parentElement.parentElement;"></span><button  class="badge btn close float-right" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button></div>`;
+    
     var answerMathField = MQ.MathField(document.querySelector("#e"+info.length), {
     handlers: {}});
     l = info.length;
@@ -78,16 +76,17 @@ function addDisplayEquation(){
     elem: document.querySelector("#e"+l),
     mathfield: answerMathField
     });
-
-answerMathField.focus();
+    n.onclick=`info[${info.length}].mathfield.focus()`;
+    answerMathField.focus()
 };
 
 function addText(){
     n = document.createElement("span");
-    if(!!document.getElementById(lastFocused.id)){
+    /*if(!!document.getElementById(lastFocused.id)){
     $(n).insertAfter("#"+lastFocused.id);}
-    else{$(n).insertAfter("#"+(lastFocused.id-1));}
-    n.outerHTML = '<span contenteditable="true" id="e'+info.length+'" class="form-control-sm answerb my-2 input-sm bg-white" style="font-size:14pt" onfocus="lastFocused=this;"></span>';
+    else{$(n).insertAfter("#"+(lastFocused.id-1));}*/
+    root.appendChild(n);
+    n.outerHTML =  `<span class="form-control-sm answerb my-2 input-sm rgba-green-strong or"><span contenteditable="true" id="e`+info.length+`" class=" or text-light" style="font-size:14pt" onfocus="lastFocused=this.parentElement;">&nbsp;&nbsp</span><button  class="badge btn close" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button></span>`;
 document.getElementById("e"+info.length).focus();
 l = info.length;
     info.push({type:"text",
@@ -95,20 +94,17 @@ l = info.length;
     elem: document.querySelector("#e"+l)
 
     });
-    uinfo.push({type:"text",
-    id: "e"+l,
-    elem: document.querySelector("#e"+l)
-
-    });
+    
 
 };
 
 function addBreak(){
-    n = document.createElement("hr");
-    if(!!document.getElementById(lastFocused.id)){
+    n = document.createElement("DIV");
+    /*if(!!document.getElementById(lastFocused.id)){
     $(n).insertAfter("#"+lastFocused.id);}
-    else{$(n).insertAfter("#"+(lastFocused.id-1));}
-    n.outerHTML='<hr id="e'+info.length+'" onclick="lastFocused=this;">';
+    else{$(n).insertAfter("#"+(lastFocused.id-1));}*/
+    root.appendChild(n);
+    n.outerHTML=`<div class="row"><hr class="rgba-lime-strong col-11" id="e`+info.length+`" onclick="lastFocused=this.parentElement;"><button  class="badge btn close float-right col" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button><span>`;
     document.getElementById("e"+info.length).click();
     l = info.length;
     info.push({type:"break",
@@ -116,11 +112,7 @@ function addBreak(){
     elem: document.querySelector("#e"+l)
 
     });
-    uinfo.push({type:"break",
-    id: "e"+l,
-    elem: document.querySelector("#e"+l)
-
-    });
+    
 
 };
 
@@ -183,7 +175,7 @@ if (obj.type =="break"){
 e = document.createElement("BR");
 //final+=e.outerHTML;
 final += "</p><p>";
-lat += "~\\\\"
+lat += "~\\~\\"
 }
 }
 final += "</p>"
@@ -194,14 +186,19 @@ Prism.highlightAll();
 }
 
 
-
-function deleteElement(){
-var index = document.querySelector("#indexer").value;
-ob = uinfo[index];
-console.log(ob.elem);
-e = ob.elem;
-e.remove();
-num = ob.id[1];
-info[num] = {type:"none"};
-uinfo.pop(index)
-}
+function rmFromInfo(id){
+    for (n in info){
+        var b= info[n];
+        if (b.id==id){
+            info.splice(n,1);
+            return true
+        }
+    }
+    return false
+    }
+    function rmFromDOM(id){
+        var el  = document.getElementById(id);
+        if (el.parentElement==root){el.remove()}
+        else if (el.parentElement.parentElement==root){el.parentElement.remove()}
+        else if (el.parentElement.parentElement.parentElement==root){el.parentElement.parentElement.remove()}
+    }
