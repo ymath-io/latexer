@@ -1,7 +1,7 @@
 # Latexer
 ## About
 This application was adapted from the Course Maker to provide a way for lazy LaTeX typesetting. To use it, use the buttons or keyboard shortcuts below to add the components you want. When you are done, LaTeX it!
-### Keyboard Shortcuts
+### Keyboard Shortcuts for the website
 * Alt-E : Insert inline equation
 * Alt-D : Insert display equation
 * Alt-T : Insert text box
