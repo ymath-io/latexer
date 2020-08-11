@@ -21,7 +21,7 @@ observer = new MutationObserver(function(mutationsList, observer) {
 // call `observe` on that MutationObserver instance,
 // passing it the element to observe, and the options object
 observer.observe(elementToObserve, {characterData: false, childList: true, attributes: false});
-PUSH
+
 */
 
 
@@ -30,7 +30,7 @@ function decodeHtml(html) {
     txt.innerHTML = html;
     return txt.value;
 }
-function addEquation(){
+function addEquation(toggle=true){
     n = document.createElement("SPAN");
     /*if(!!document.getElementById(lastFocused.id)){
     $(n).insertAfter("#"+lastFocused.id);}
@@ -52,16 +52,18 @@ function addEquation(){
     elem: document.querySelector("#e"+l),
     mathfield: answerMathField
     });
-answerMathField.focus();
+    if (toggle){
+answerMathField.focus();}
+return answerMathField
 };
 
-function addDisplayEquation(){
+function addDisplayEquation(toggle=true){
     n = document.createElement("DIV");
     root.appendChild(n);
     /*if(!!document.getElementById(lastFocused.id)){
     $(holder).insertAfter("#"+lastFocused.id);}
     else{$(holder).insertAfter("#"+(lastFocused.id-1));}*/
-    n.outerHTML = `<div class="form-control-sm answerb darken-3 cyan or mt-0 text-center" onclick="info[${info.length}].mathfield.focus()" ><span id="e${info.length}" style="border:none !important;" class="answerb form-control-sm text-light  or" onclick="lastFocused = this.parentElement.parentElement;"></span><button  class="badge btn close float-right" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button></div>`;
+    n.outerHTML = `<div class="form-control-sm answerb light-blue darken-2 or mt-0 text-center" onclick="info[${info.length}].mathfield.focus()" ><span id="e${info.length}" style="border:none !important;" class="answerb form-control-sm text-light  or" onclick="lastFocused = this.parentElement.parentElement;"></span><button  class="badge btn close float-right" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button></div>`;
     
     var answerMathField = MQ.MathField(document.querySelector("#e"+info.length), {
     handlers: {}});
@@ -77,7 +79,9 @@ function addDisplayEquation(){
     mathfield: answerMathField
     });
     n.onclick=`info[${info.length}].mathfield.focus()`;
-    answerMathField.focus()
+    if (toggle){
+    answerMathField.focus()}
+    return answerMathField
 };
 
 function addText(){
@@ -86,7 +90,7 @@ function addText(){
     $(n).insertAfter("#"+lastFocused.id);}
     else{$(n).insertAfter("#"+(lastFocused.id-1));}*/
     root.appendChild(n);
-    n.outerHTML =  `<span class="form-control-sm answerb my-2 input-sm rgba-green-strong or"><span contenteditable="true" id="e`+info.length+`" class=" or text-light" style="font-size:14pt" onfocus="lastFocused=this.parentElement;">&nbsp;&nbsp</span><button  class="badge btn close" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button></span>`;
+    n.outerHTML =  `<span class="form-control-sm answerb my-2 input-sm rgba-green-strong or"><span contenteditable="true" id="e`+info.length+`" class=" or text-light" style="font-size:14pt" onfocus="lastFocused=this.parentElement;"></span><button  class="badge btn close" onclick="rmFromInfo('e${info.length}');rmFromDOM('e${info.length}')">&times;</button></span>`;
 document.getElementById("e"+info.length).focus();
 l = info.length;
     info.push({type:"text",
@@ -169,13 +173,13 @@ if (obj.type == "dmq"){
 e = document.createElement("p");
     e.innerHTML = " $$"+obj.mathfield.latex()+"$$ ";
     final += e.innerHTML;
-    lat += e.innerHTML
+    lat += "\n"+e.innerHTML+"\n"
 }
 if (obj.type =="break"){
 e = document.createElement("BR");
 //final+=e.outerHTML;
 final += "</p><p>";
-lat += "~\\\\"
+lat += "~\\\\~\\\\ \n"
 }
 }
 final += "</p>"
@@ -183,6 +187,7 @@ document.querySelector("#out").innerHTML = final;
 MathJax.typeset();
 document.querySelector("#out2").innerHTML = decodeHtml(lat);
 Prism.highlightAll();
+tex=decodeHtml(lat);
 }
 
 

@@ -8,40 +8,19 @@
 }</style>
     <meta charset="UTF-8">
     <title>LaTeXer!</title>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163408633-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-163408633-2');
-</script>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PF58PDC');</script>
-<!-- End Google Tag Manager -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-title" content="SOCRATHEMATICS">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="prism.css">
   <link rel="stylesheet" href="style.css">
-    <link rel="favicon" href="latexer.icns">
 <link rel="stylesheet" href="mathquill-0.10.1/mathquill.css"/>
 <script src="mathquill-0.10.1/mathquill.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -56,7 +35,7 @@ var MQ = MathQuill.getInterface(2);
   <script>
 var MathJax = {
   tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
+    inlineMath: [['$', '$']]
   }
 };
 </script>
@@ -67,20 +46,81 @@ var MathJax = {
     hr:not(.normal) {
             position: relative;
             
-            
-            
         }
 </style>
-<div class="sticky-top pt-4 blue-gradient text-light">
-<h1 class="px-5">$$\LaTeX \text{-er}$$</h1>
-<div class="btn-group  d-flex" role="group">
-  <button type="button" id="eq" class="btn rgba-indigo-strong py-2" onclick="addEquation();">Math</button>
-              <button type="button" id="deq" class="btn darken-3 cyan py-2" onclick="addDisplayEquation();">Display Math</button>
-  <button type="button" id="txt" class="btn rgba-green-strong py-2" onclick="addText();">Text</button>
-              <button type="button" id="itm" class="btn blue-grey py-2" onclick="addItem();">Item</button>
-  <button type="button" id="lb" class="btn rgba-lime-strong py-2" onclick="addBreak();">Line break</button>
-</div></div>
-<div class="container" id="" style="margin-top:30px">
+<!-- Modal -->
+<div class="modal fade" id="importm" tabindex="-1" role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark">Import a file</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="importfinp" accept=".json">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary disabled" id="importfbtn">Import</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/.Modal-->
+  <!--Navbar-->
+<nav class="navbar navbar-dark transparent sticky-top blue-gradient text-light waves-effect waves-light">
+
+  <!-- Navbar brand -->
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon text-white"></span>
+  </button>
+  <a class=" px-2 " onclick="makeCourse(info)"><h1 class="" >$\LaTeX \text{-er}$</h1></a>
+  <div class="btn-group  d-flex" role="group">
+    <button type="button" id="eq" class="btn rgba-indigo-strong py-2" onclick="addEquation();">Math</button>
+                <button type="button" id="deq" class="btn light-blue darken-2 py-2" onclick="addDisplayEquation();">Display Math</button>
+    <button type="button" id="txt" class="btn rgba-green-strong py-2" onclick="addText();">Text</button>
+                <button type="button" id="itm" class="btn blue-grey py-2" onclick="addItem();">Item</button>
+    <button type="button" id="lb" class="btn rgba-lime-strong py-2" onclick="addBreak();">Line break</button>
+  </div>
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+    <!-- Links -->
+    <div class="container ">
+    <ul class="navbar-nav  col">
+      <li class="nav-item row">
+        <a class="nav-link" data-toggle="modal" data-modal="#importm" data-target="#importm">Import...</a>
+      </li>
+      <li class="nav-item row">
+        <a class="nav-link" onclick="clearAll()">Clear</a>
+      </li>
+    </ul>
+    <ul class="col navbar-nav ">
+      <li class="nav-item row">
+        <a class="nav-link" onclick="pack()">Save...</a>
+      </li>
+      <li class="nav-item row"><a class="nav-link" onclick="release()">Export TeX...</a></li>
+    </ul>
+  </div>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+<div class="container " id="" style="margin-top:30px">
 
   <div class="row">
       <div class="col-sm-12 text-dark">
@@ -93,16 +133,7 @@ var MathJax = {
 
           <hr class="normal"><button type="button" id="final" class="btn btn-lg btn-primary" onclick="makeCourse(info);">$\LaTeX$ it!</button><hr class="normal">
   </div>
-      <!--<div class="col-sm-4">
-          <h1>Delete</h1>
-          <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Index to delete" id="indexer">
-  <div class="input-group-append">
-    <button class="btn btn-outline-danger" type="button" onclick="deleteElement();">Delete it!</button>
-  </div>
-</div>
-      </div>-->
-
+     
 </div>
 <div class="btn-group d-flex pt-5" role="group">
   <a type="button" id="eq" class="btn btn-outline-primary py-2" onclick="document.getElementById('code').style.display=null;document.getElementById('preview').style.display='none';this.className='btn btn-primary py-2 disabled';this.nextElementSibling.className='btn btn-outline-primary py-2 ';">Code</a>
@@ -117,6 +148,7 @@ var MathJax = {
     </div>
     <pre id="code" style="display:none"><code class="row language-latex" id="out2"></code></pre>
 </div>
+
 <script src="prism.js"></script>
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -128,6 +160,9 @@ var MathJax = {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 </body>
 <script src="make.js"></script>
+<script src="save.js"></script>
+<script src="import.js"></script>
+<script src="export.js"></script>
 <script>
     Mousetrap.bind('enter', function(){makeCourse(info)});
     Mousetrap.bind('alt+t', function(){addText()});
