@@ -1,4 +1,6 @@
+<img height=150px src="https://ymath.io/favicon.png"/>
 # Latexer
+https://latexer.ymath.io
 ## About
 This application was adapted from the Course Maker to provide a way for lazy LaTeX typesetting. To use it, use the buttons or keyboard shortcuts below to add the components you want. When you are done, LaTeX it!
 ### Keyboard Shortcuts for the website
