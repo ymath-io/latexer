@@ -11,8 +11,9 @@ This application was adapted from the Course Maker to provide a way for lazy LaT
 * Alt-L : Insert line break
 * Enter : Generate LaTeX code
 
-Please note that no shortcuts work when you are typing. To use a shortcut, click anywhere outside the input field first.
+Please note that no shortcuts work when you are typing (on the website). To use a shortcut, click anywhere outside the input field first.
 
+All keyboard shortcuts work in the desktop app as well, but using `Commnd` instead of `Option`.
 ## Thank you
 * MathJax
 * MathQuill
