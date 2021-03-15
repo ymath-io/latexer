@@ -1,4 +1,4 @@
-var FileSaver = require('file-saver');
+
 function pack(toggle=true){
     var out = {data:[]};
     //out.title = document.querySelector("#ctitle").value;
@@ -23,7 +23,7 @@ function pack(toggle=true){
     var blob = new Blob([jsonse], {type: "application/json"});
     var title="latex.json";
     
-    FileSaver.saveAs(blob, title);
+    saveAs(blob, title);
     if (toggle){
     $('.navbar-toggler').click(); }
 }
